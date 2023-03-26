@@ -1,0 +1,1 @@
+export const GET_CAROUSEL_IMG = 'GET_CAROUSEL_IMG'
