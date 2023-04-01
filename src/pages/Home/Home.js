@@ -3,13 +3,16 @@ import MultipleRowSlick from '../../components/SlickMovie/MultipleRowSlick';
 import HomeMenu from './HomeMenu/HomeMenu';
 import { useSelector, useDispatch } from 'react-redux';
 import { layDanhSachPhimAction } from '../../redux/actions/QuanLyPhimAction';
+import { layDanhSachHeThongRapAction } from '../../redux/actions/QuanLyRapActions';
 
 export default function Home() {
+    const { arrFilm } = useSelector((state) => state.QuanLyPhimReducer);
+    const { heThongRapChieu } = useSelector((state) => state.QuanLyRapReducer);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(layDanhSachPhimAction);
+        dispatch(layDanhSachHeThongRapAction());
     }, []);
-    const { arrFilm } = useSelector((state) => state.QuanLyPhimReducer);
     return (
         <div>
             <section className="text-gray-600 body-font">
@@ -19,7 +22,7 @@ export default function Home() {
             </section>
 
             <div className="mx-36">
-                <HomeMenu />
+                <HomeMenu heThongRapChieu={heThongRapChieu} />
             </div>
         </div>
     );

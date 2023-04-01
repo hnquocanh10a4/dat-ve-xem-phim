@@ -37,9 +37,10 @@ function MultipleRowSlick(props) {
 
     let activeClassSC = sapChieu === true ? 'active_Film' : 'none_active_Film';
     const renderFilms = () => {
-        return props.arrFilm.slice(0, 12).map((item, index) => {
+        return props.arrFilm.slice(0, 6).map((item, index) => {
+            console.log('props.arrFilm.item', item);
             return (
-                <div className="mt-2" key={index}>
+                <div className="mt-2 " key={index}>
                     <FilmFlip item={item} />
                 </div>
             );
@@ -53,7 +54,7 @@ function MultipleRowSlick(props) {
         centerPadding: '60px',
         slidesToShow: 2,
         speed: 500,
-        rows: 2,
+        rows: 1,
         slidesPerRow: 2,
         variableWidth: true,
         nextArrow: <SampleNextArrow />,
@@ -61,7 +62,7 @@ function MultipleRowSlick(props) {
     };
 
     return (
-        <div>
+        <div className="mx-8">
             <button
                 className={`${styleSlick[activeClassDC]} px-8 py-3 font-semibold rounded bg-gray-800 text-white mr-2`}
                 onClick={() => {

@@ -4,7 +4,7 @@ import './FlimFlip.css';
 
 export default function FilmFlip(props) {
     const { item } = props;
-
+    // console.log('tiem', item);
     return (
         <div className="flip-card mt-2">
             <div className="flip-card-inner">
