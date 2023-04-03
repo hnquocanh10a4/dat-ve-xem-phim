@@ -1,6 +1,7 @@
 import React from 'react';
 import { PlayCircleOutlined } from '@ant-design/icons';
 import './FlimFlip.css';
+import { history } from '../../App';
 
 export default function FilmFlip(props) {
     const { item } = props;
@@ -34,7 +35,12 @@ export default function FilmFlip(props) {
                     </div>
                 </div>
             </div>
-            <div className="bg-orange-300 text-center cursor-pointer py-2 bg-indigo-300 my-2 text-success-50 font-bold">
+            <div
+                onClick={() => {
+                    history.push(`/detail/${item.maPhim}`);
+                }}
+                className="bg-orange-300 text-center cursor-pointer py-2 bg-indigo-300 my-2 text-success-50 font-bold"
+            >
                 ĐẶT VÉ
             </div>
         </div>
