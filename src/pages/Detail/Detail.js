@@ -23,7 +23,7 @@ export default function Detail(props) {
 
     return (
         <div style={{ backgroundImage: `url(${filmDetail.hinhAnh})`, minHeight: '100vh' }}>
-            <div className="glassmorphism h-screen w-screen">
+            <div className="glassmorphism w-screen h-full pb-5">
                 <div className="grid grid-cols-12">
                     <div className="col-span-5 col-start-3">
                         <div className="grid grid-cols-3">
@@ -65,7 +65,7 @@ export default function Detail(props) {
                     </div>
                 </div>
 
-                <div className="mt-10 ml-72 w-2/3 container bg-white px-5 py-5">
+                <div className="mt-10 ml-72 w-2/3 container bg-white px-5 py-5 rounded-xl">
                     <Tabs defaultActiveKey="1" centered>
                         <TabPane tab="Lịch chiếu" key="1" style={{ minHeight: 300 }}>
                             <div>
