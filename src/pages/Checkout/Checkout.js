@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { layChiTietPhongVeAction } from '../../redux/actions/QuanLyDatVeActions';
 import style from './Checkout.module.css';
-import { CheckOutlined, CloseOutlined, UserOutlined } from '@ant-design/icons';
+import { CheckOutlined, CloseOutlined, UserOutlined, SmileOutlined } from '@ant-design/icons';
 import './Checkout.css';
 import { DAT_VE } from '../../redux/types/QuanLyDatVeType';
 import _ from 'lodash';
@@ -15,7 +15,9 @@ import moment from 'moment';
 
 function Checkout(props) {
     const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
-    const { chiTietPhongVe, danhSachGheDangDat } = useSelector((state) => state.QuanLyDatVeReducer);
+    const { chiTietPhongVe, danhSachGheDangDat, danhSachGheKhachDat } = useSelector(
+        (state) => state.QuanLyDatVeReducer,
+    );
     const dispatch = useDispatch();
     console.log('danhSachGheDangDat', danhSachGheDangDat);
     useEffect(() => {
@@ -36,6 +38,11 @@ function Checkout(props) {
             //Kiểm tra từng ghế render xem có trong mảng ghế đang đặt hay không
             let indexGheDD = danhSachGheDangDat.findIndex((gheDD) => gheDD.maGhe === ghe.maGhe);
 
+            let classGheKhachDat = '';
+            let indexGheKD = danhSachGheKhachDat.findIndex((gheKD) => gheKD.maGhe === ghe.maGhe);
+            if (indexGheKD !== -1) {
+                classGheKhachDat = 'gheKhachDat';
+            }
             let classGheDaDuocDat = '';
             if (userLogin.taiKhoan === ghe.taiKhoanNguoiDat) {
                 classGheDaDuocDat = 'gheDaDuocDat';
@@ -54,8 +61,8 @@ function Checkout(props) {
                                 gheDuocChon: ghe,
                             });
                         }}
-                        disabled={ghe.daDat}
-                        className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDangDat} ${classGheDaDuocDat} text-center`}
+                        disabled={ghe.daDat || classGheKhachDat !== ''}
+                        className={`ghe ${classGheVip} ${classGheDaDat} ${classGheDangDat} ${classGheDaDuocDat} ${classGheKhachDat} text-center`}
                         key={index}
                     >
                         {ghe.daDat ? (
@@ -64,6 +71,8 @@ function Checkout(props) {
                             ) : (
                                 <CloseOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} />
                             )
+                        ) : classGheKhachDat !== '' ? (
+                            <SmileOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} />
                         ) : (
                             ghe.stt
                         )}
