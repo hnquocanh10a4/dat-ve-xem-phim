@@ -1,3 +1,4 @@
+import { openNotification } from '../../components/Notification/Notification';
 import { quanLyNguoiDungService } from '../../services/QuanLyNguoiDung';
 import { DANG_NHAP_ACTION, SET_THONG_TIN_NGUOI_DUNG } from '../types/QuanLyNguoiDungType';
 
@@ -11,10 +12,13 @@ export const dangNhapAction = (thongTinDangNhap) => {
                     type: DANG_NHAP_ACTION,
                     thongTinDangNhap: result.data.content,
                 });
+
+                openNotification('success', 'Thành công', 'Đăng nhập thành công');
             }
 
             console.log('result', result);
         } catch (error) {
+            openNotification('error', 'Thất bại', 'Đăng nhập Thất bại');
             console.log('error', error.response.data);
         }
     };
