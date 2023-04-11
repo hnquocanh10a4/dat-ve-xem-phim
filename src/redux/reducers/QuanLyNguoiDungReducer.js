@@ -18,7 +18,7 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
             const { thongTinDangNhap } = action;
             localStorage.setItem(USER_LOGIN, JSON.stringify(thongTinDangNhap));
             localStorage.setItem(TOKEN, thongTinDangNhap.accessToken);
-            history.goBack();
+            history.push('/');
             return { ...state, userLogin: thongTinDangNhap };
         }
 

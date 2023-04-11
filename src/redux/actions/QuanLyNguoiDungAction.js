@@ -1,3 +1,4 @@
+import { history } from '../../App';
 import { openNotification } from '../../components/Notification/Notification';
 import { quanLyNguoiDungService } from '../../services/QuanLyNguoiDung';
 import { DANG_NHAP_ACTION, SET_THONG_TIN_NGUOI_DUNG } from '../types/QuanLyNguoiDungType';
@@ -19,6 +20,24 @@ export const dangNhapAction = (thongTinDangNhap) => {
             console.log('result', result);
         } catch (error) {
             openNotification('error', 'Thất bại', 'Đăng nhập Thất bại');
+            console.log('error', error.response.data);
+        }
+    };
+};
+
+export const dangKyAction = (thongTinDangKy) => {
+    return async (dispatch) => {
+        try {
+            const result = await quanLyNguoiDungService.dangKy(thongTinDangKy);
+
+            if (result.data.statusCode === 200) {
+                history.push('/login');
+                openNotification('success', 'Thành công', 'Đăng ký thành công mời bạn đăng nhập');
+            }
+
+            console.log('result', result);
+        } catch (error) {
+            openNotification('error', 'Thất bại', 'Đăng ký Thất bại');
             console.log('error', error.response.data);
         }
     };
