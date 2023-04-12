@@ -25,6 +25,7 @@ function Checkout(props) {
         const action = layChiTietPhongVeAction(props.match.params.id);
         //Dispatch function này đi
         dispatch(action);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     console.log({ chiTietPhongVe });
@@ -90,9 +91,7 @@ function Checkout(props) {
                 <div className="col-span-9">
                     <div className="flex flex-col items-center mt-5">
                         <div className="bg-black " style={{ width: '80%', height: 15 }}></div>
-                        <div className={`${style['trapezoid']} text-center`}>
-                            <h3 className="mt-3 text-black">Màn hình</h3>
-                        </div>
+                        <div className={`${style['trapezoid']} text-center`}></div>
                         <div>{renderSeats()}</div>
                     </div>
 
@@ -109,30 +108,30 @@ function Checkout(props) {
                             </thead>
                             <tbody className="bg-white divide-y divide-gray-200">
                                 <tr>
-                                    <td>
+                                    <td className="text-center">
                                         <button className="ghe text-center">
                                             {' '}
                                             <CheckOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} />{' '}
                                         </button>{' '}
                                     </td>
-                                    <td>
+                                    <td className="text-center">
                                         <button className="ghe gheDangDat text-center">
                                             {' '}
                                             <CheckOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} />
                                         </button>{' '}
                                     </td>
-                                    <td>
+                                    <td className="text-center">
                                         <button className="ghe gheVip text-center">
                                             <CheckOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} />
                                         </button>{' '}
                                     </td>
-                                    <td>
+                                    <td className="text-center">
                                         <button className="ghe gheDaDat text-center">
                                             {' '}
                                             <CheckOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} />{' '}
                                         </button>{' '}
                                     </td>
-                                    <td>
+                                    <td className="text-center">
                                         <button className="ghe gheDaDuocDat text-center">
                                             {' '}
                                             <CheckOutlined style={{ marginBottom: 7.5, fontWeight: 'bold' }} />{' '}
@@ -252,7 +251,7 @@ function KetQuaDatVe(props) {
     const dispatch = useDispatch();
     const { thongTinNguoiDung } = useSelector((state) => state.QuanLyNguoiDungReducer);
 
-    const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
+    // const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
 
     useEffect(() => {
         const action = layThongTinNguoiDungAction();
@@ -272,6 +271,10 @@ function KetQuaDatVe(props) {
                             alt="team"
                             className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                             src={ticket.hinhAnh}
+                            onError={({ currentTarget }) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = 'https://picsum.photos/64';
+                            }}
                         />
                         <div className="flex-grow">
                             <h2 className="text-pink-500 title-font font-medium text-2xl">{ticket.tenPhim}</h2>
@@ -305,14 +308,11 @@ function KetQuaDatVe(props) {
     return (
         <div className="p-5">
             <section className="text-gray-600 body-font">
-                <div className="container px-5 py-24 mx-auto">
+                <div className="container px-5 py-15 mx-auto">
                     <div className="flex flex-col text-center w-full mb-20">
                         <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4  text-purple-600 ">
                             Lịch sử đặt vé khách hàng
                         </h1>
-                        <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-                            Hãy xem thông tin địa và thời gian để xem phim vui vẻ bạn nhé !
-                        </p>
                     </div>
                     <div className="flex flex-wrap -m-2">
                         {renderTicketItem()}

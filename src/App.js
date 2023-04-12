@@ -12,23 +12,26 @@ import Checkout from './pages/Checkout/Checkout';
 import CheckoutTemplate from './templates/CheckoutTemplate/CheckoutTemplate';
 import { UserTemplate } from './templates/UserTemplate/UserTemplate';
 import Loading from './components/Loading/Loading';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 export const history = createBrowserHistory();
 
 function App() {
     return (
         <Router history={history}>
-            <Loading />
-            <Switch>
-                <HomeTemplate path="/home" exact Component={Home} />
-                <UserTemplate path="/login" exact Component={Login} />
-                <UserTemplate path="/register" exact Component={Register} />
-                <HomeTemplate path="/detail/:id" exact Component={Detail} />
-                <HomeTemplate path="/news" exact Component={News} />
-                <HomeTemplate path="/contact" exact Component={Contact} />
-                <HomeTemplate path="/" exact Component={Home} />
-                <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
-            </Switch>
+            <ScrollToTop>
+                <Loading />
+                <Switch>
+                    <HomeTemplate path="/home" exact Component={Home} />
+                    <UserTemplate path="/login" exact Component={Login} />
+                    <UserTemplate path="/register" exact Component={Register} />
+                    <HomeTemplate path="/detail/:id" exact Component={Detail} />
+                    <HomeTemplate path="/news" exact Component={News} />
+                    <HomeTemplate path="/contact" exact Component={Contact} />
+                    <HomeTemplate path="/" exact Component={Home} />
+                    <CheckoutTemplate path="/checkout/:id" exact component={Checkout} />
+                </Switch>
+            </ScrollToTop>
         </Router>
     );
 }

@@ -18,7 +18,7 @@ export default function Home() {
         <div>
             <HomeCarousel />
             <section className="text-gray-600 body-font">
-                <div className="container px-5 py-24 mx-20px ">
+                <div id="Carousel" className="container px-5 py-24 mx-20px ">
                     <MultipleRowSlick arrFilm={arrFilm} />
                 </div>
             </section>

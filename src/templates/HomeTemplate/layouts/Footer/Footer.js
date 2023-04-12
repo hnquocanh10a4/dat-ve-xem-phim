@@ -2,6 +2,9 @@ import { AppleOutlined, FacebookOutlined } from '@ant-design/icons';
 import _ from 'lodash';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import certificate from '../../../../assets/images/media/certificate.png';
+import logo from '../../../../assets/images/logo.png';
+import { NavLink } from 'react-router-dom';
 
 export default function Footer(props) {
     const { heThongRapChieu } = useSelector((state) => state.QuanLyRapReducer);
@@ -15,20 +18,17 @@ export default function Footer(props) {
             <div className="container px-6 mx-auto space-y-6 divide-y divide-gray-400 md:space-y-12 divide-opacity-50">
                 <div className="grid grid-cols-12">
                     <div className="pb-6 col-span-full md:pb-0 md:col-span-6">
-                        <a href="#" className="flex justify-center space-x-3 md:justify-start text-black">
-                            <img
-                                src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png"
-                                alt="cyberlearn.vn"
-                            />
-                        </a>
+                        <NavLink to="/" aria-label="Back to homepage" className="flex items-center p-2">
+                            <img src={logo} alt="movie ticket" className="w-[200px]" />
+                        </NavLink>
                     </div>
                     <div className="col-span-6 text-center md:text-left md:col-span-3">
                         <p className="pb-1 text-lg font-medium text-white">PARTNER</p>
                         <div className="grid grid-cols-3" style={{ color: '#fff' }}>
                             {arrHeThongRap.map((htr, index) => {
                                 return (
-                                    <div key={index}>
-                                        <img src={htr.logo} style={{ width: 50 }} />
+                                    <div key={index} className="p-2">
+                                        <img alt={htr.tenHeThongRap} src={htr.logo} style={{ width: 50 }} />
                                     </div>
                                 );
                             })}
@@ -46,9 +46,14 @@ export default function Footer(props) {
                         </div>
                     </div>
                 </div>
-                <div className="grid justify-center pt-6 lg:justify-between text-white">
-                    <div className="flex flex-col self-center text-sm text-center md:block lg:col-start-1 md:space-x-6">
-                        <span>©2021 All rights reserved</span>
+                <div className=" text-white w-full">
+                    <div className="flex flex-row self-center text-sm text-center justify-around w-full mt-5">
+                        <span>
+                            Giấy chứng nhận đăng ký kinh doanh số: 0101659783, đăng ký thay đổi lần thứ 10, ngày 22
+                            tháng 02 năm 2023 <br />
+                            do Sở kế hoạch và đầu tư Thành phố Hồ Chí Minh cấp. Số Điện Thoại (Hotline): 1900 123 456
+                        </span>
+                        <img src={certificate} className="h-[70px]" />
                     </div>
 
                     <div className=""></div>

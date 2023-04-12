@@ -1,40 +1,33 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
+import logo from '../../../../assets/images/logo.png';
 
 export default function Header() {
     return (
         <header className="p-4 bg-coolGray-100 text-coolGray-800 bg-opacity-40 bg-black text-white fixed w-full z-10">
             <div className="container flex justify-between h-16 mx-auto">
                 <NavLink to="/" aria-label="Back to homepage" className="flex items-center p-2">
-                    <img
-                        src="https://cyberlearn.vn/wp-content/uploads/2020/03/cyberlearn-min-new-opt2.png"
-                        alt="cyberlearn.vn"
-                    />
+                    <img src={logo} alt="movie ticket" className="w-[200px]" />
                 </NavLink>
                 <ul className="items-stretch hidden space-x-3 lg:flex">
                     <li className="flex">
-                        <NavLink
-                            to="/home"
-                            className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-violet-600 border-violet-600 text-white"
+                        <ScrollLink
+                            to="Carousel"
+                            smooth={true}
+                            className="hover:text-xl hover:text-orange-600 cursor-pointer flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-white"
                         >
-                            home
-                        </NavLink>
+                            Lịch Chiếu
+                        </ScrollLink>
                     </li>
                     <li className="flex">
-                        <NavLink
-                            to="/news"
-                            className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-white"
+                        <ScrollLink
+                            to="cumRap"
+                            smooth={true}
+                            className="hover:text-xl hover:text-orange-600 cursor-pointer flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-white"
                         >
-                            news
-                        </NavLink>
-                    </li>
-                    <li className="flex">
-                        <NavLink
-                            to="/contact"
-                            className="flex items-center -mb-0.5 border-b-2 px-4 border-transparent text-white"
-                        >
-                            contact
-                        </NavLink>
+                            Cụm rạp
+                        </ScrollLink>
                     </li>
                 </ul>
                 <div className="items-center flex-shrink-0 hidden lg:flex">

@@ -59,19 +59,24 @@ export default class Demo extends React.PureComponent {
                                                         <div className="ml-2">
                                                             <h1 className="text-2xl text-green-700">{phim.tenPhim}</h1>
                                                             <p>{cumRap.diaChi}</p>
-                                                            <div className="grid grid-cols-6 gap-6">
+                                                            <div className="grid grid-cols-5 gap-6">
                                                                 {phim.lstLichChieuTheoPhim
                                                                     ?.slice(0, 12)
                                                                     .map((lichChieu, index) => {
                                                                         return (
                                                                             <NavLink
-                                                                                className="text-xl text-green-400"
-                                                                                to="/"
+                                                                                className="rounded-md text-sm border-2 border-solid border-orange-600 p-[3px] text-orange-600 hover:bg-orange-600 hover:text-white"
+                                                                                to={`/checkout/${lichChieu.maLichChieu}`}
                                                                                 key={index}
                                                                             >
                                                                                 {moment(
                                                                                     lichChieu.ngayChieuGioChieu,
-                                                                                ).format('hh:mm A')}
+                                                                                ).format('HH:mm')}
+                                                                                <span className="ml-1 text-gray-500">
+                                                                                    {moment(
+                                                                                        lichChieu.ngayChieuGioChieu,
+                                                                                    ).format('MMM Do')}
+                                                                                </span>
                                                                             </NavLink>
                                                                         );
                                                                     })}
@@ -95,9 +100,9 @@ export default class Demo extends React.PureComponent {
     render() {
         const { tabPosition } = this.state;
         return (
-            <>
+            <div id="cumRap">
                 <Tabs tabPosition={tabPosition}>{this.renderHeThongRap()}</Tabs>
-            </>
+            </div>
         );
     }
 }

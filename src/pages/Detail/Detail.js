@@ -113,7 +113,7 @@ export default function Detail(props) {
                                                                     </p>
                                                                 </div>
                                                             </div>
-                                                            <div className="thong-tin-lich-chieu grid grid-cols-4">
+                                                            <div className="thong-tin-lich-chieu grid grid-cols-5 gap-6">
                                                                 {cumRap.lichChieuPhim
                                                                     ?.slice(0, 12)
                                                                     .map((lichChieu, index) => {
@@ -121,11 +121,16 @@ export default function Detail(props) {
                                                                             <NavLink
                                                                                 to={`/checkout/${lichChieu.maLichChieu}`}
                                                                                 key={index}
-                                                                                className="col-span-1 text-green-800 font-bold"
+                                                                                className="rounded-md text-sm border-2 border-solid border-orange-600 p-[3px] text-orange-600 hover:bg-orange-600 hover:text-white text-center"
                                                                             >
                                                                                 {moment(
                                                                                     lichChieu.ngayChieuGioChieu,
                                                                                 ).format('hh:mm A')}
+                                                                                <span className="ml-1 text-gray-500">
+                                                                                    {moment(
+                                                                                        lichChieu.ngayChieuGioChieu,
+                                                                                    ).format('MMM Do')}
+                                                                                </span>
                                                                             </NavLink>
                                                                         );
                                                                     })}

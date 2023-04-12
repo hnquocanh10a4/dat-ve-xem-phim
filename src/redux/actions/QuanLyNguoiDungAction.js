@@ -2,6 +2,7 @@ import { history } from '../../App';
 import { openNotification } from '../../components/Notification/Notification';
 import { quanLyNguoiDungService } from '../../services/QuanLyNguoiDung';
 import { DANG_NHAP_ACTION, SET_THONG_TIN_NGUOI_DUNG } from '../types/QuanLyNguoiDungType';
+import { displayLoadingAction, hideLoadingAction } from './LoadingActions';
 
 export const dangNhapAction = (thongTinDangNhap) => {
     return async (dispatch) => {
@@ -46,6 +47,7 @@ export const dangKyAction = (thongTinDangKy) => {
 export const layThongTinNguoiDungAction = (thongTinDangNhap) => {
     return async (dispatch) => {
         try {
+            dispatch(displayLoadingAction);
             const result = await quanLyNguoiDungService.layThongTinNguoiDung();
 
             if (result.data.statusCode === 200) {
@@ -54,10 +56,12 @@ export const layThongTinNguoiDungAction = (thongTinDangNhap) => {
                     thongTinNguoiDung: result.data.content,
                 });
             }
+            await dispatch(hideLoadingAction);
 
             console.log('result', result);
         } catch (error) {
             console.log('error', error.response.data);
+            dispatch(hideLoadingAction);
         }
     };
 };

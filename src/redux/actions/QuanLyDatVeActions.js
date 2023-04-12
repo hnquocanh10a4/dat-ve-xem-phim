@@ -1,11 +1,12 @@
 import { quanLyDatVeService } from '../../services/QuanLyDatVeService';
 import { ThongTinDatVe } from '../../_core/models/ThongTinDatVe';
-import { CHUYEN_TAB, DAT_VE_HOAN_TAT, SET_CHI_TIET_PHONG_VE } from '../types/QuanLyDatVeType';
+import { CHUYEN_TAB, SET_CHI_TIET_PHONG_VE } from '../types/QuanLyDatVeType';
 import { displayLoadingAction, hideLoadingAction } from './LoadingActions';
 
 export const layChiTietPhongVeAction = (maLichChieu) => {
     return async (dispatch) => {
         try {
+            dispatch(displayLoadingAction);
             const result = await quanLyDatVeService.layChiTietPhongVe(maLichChieu);
 
             // console.log('result',result);
@@ -15,7 +16,9 @@ export const layChiTietPhongVeAction = (maLichChieu) => {
                     chiTietPhongVe: result.data.content,
                 });
             }
+            await dispatch(hideLoadingAction);
         } catch (error) {
+            dispatch(hideLoadingAction);
             console.log('error', error);
             console.log('error', error.response?.data);
         }
