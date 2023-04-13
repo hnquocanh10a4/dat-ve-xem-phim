@@ -145,10 +145,20 @@ export default function Detail(props) {
                             </div>
                         </TabPane>
                         <TabPane tab="Thông tin" key="2" style={{ minHeight: 300 }}>
-                            Thông tin
-                        </TabPane>
-                        <TabPane tab="Đánh giá" key="3" style={{ minHeight: 300 }}>
-                            Đánh giá
+                            <div className="flex w-full flex-wrap justify-around text-lg">
+                                <div>
+                                    <div className="flex justify-between basis-1/2">
+                                        <div className="flex">
+                                            <p className="mr-2 font-bold">Ngày công chiếu: </p>
+                                            <p>{moment(filmDetail.ngayKhoiChieu).format('MMM Do YY')}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="basis-1/2">
+                                    <p className="font-bold">Mô tả:</p>
+                                    <p>{filmDetail.moTa}</p>
+                                </div>
+                            </div>
                         </TabPane>
                     </Tabs>
                 </div>

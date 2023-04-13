@@ -12,6 +12,9 @@ import { datVeAction } from '../../redux/actions/QuanLyDatVeActions';
 import { Tabs } from 'antd';
 import { layThongTinNguoiDungAction } from '../../redux/actions/QuanLyNguoiDungAction';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 function Checkout(props) {
     const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
@@ -21,9 +24,7 @@ function Checkout(props) {
     const dispatch = useDispatch();
     console.log('danhSachGheDangDat', danhSachGheDangDat);
     useEffect(() => {
-        //Gọi hàm tạo ra 1 async function
         const action = layChiTietPhongVeAction(props.match.params.id);
-        //Dispatch function này đi
         dispatch(action);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -89,6 +90,9 @@ function Checkout(props) {
         <div className=" min-h-screen mt-5">
             <div className="grid grid-cols-12">
                 <div className="col-span-9">
+                    <Link to="/">
+                        <FontAwesomeIcon icon={faHome} className="text-3xl" />
+                    </Link>
                     <div className="flex flex-col items-center mt-5">
                         <div className="bg-black " style={{ width: '80%', height: 15 }}></div>
                         <div className={`${style['trapezoid']} text-center`}></div>

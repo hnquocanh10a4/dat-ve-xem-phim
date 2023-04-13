@@ -1,5 +1,5 @@
 import { TOKEN, USER_LOGIN } from '../../until/setting/configs';
-import { DANG_NHAP_ACTION, SET_THONG_TIN_NGUOI_DUNG } from '../types/QuanLyNguoiDungType';
+import { DANG_NHAP_ACTION, DANG_XUAT, SET_THONG_TIN_NGUOI_DUNG } from '../types/QuanLyNguoiDungType';
 import { history } from '../../App.js';
 
 let user = {};
@@ -25,6 +25,12 @@ export const QuanLyNguoiDungReducer = (state = stateDefault, action) => {
         case SET_THONG_TIN_NGUOI_DUNG: {
             state.thongTinNguoiDung = action.thongTinNguoiDung;
             return { ...state };
+        }
+
+        case DANG_XUAT: {
+            localStorage.removeItem(USER_LOGIN);
+            localStorage.removeItem(TOKEN);
+            return { ...state, userLogin: {} };
         }
 
         default:
