@@ -10,13 +10,11 @@ import moment from 'moment';
 
 export default function Detail(props) {
     const filmDetail = useSelector((state) => state.QuanLyRapReducer.filmDetail);
-    console.log('filmDetail', filmDetail);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         let { id } = props.match.params;
-        console.log('id', id);
 
         dispatch(layThongTinChiTietPhim(id));
     }, []);

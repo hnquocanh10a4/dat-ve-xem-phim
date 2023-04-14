@@ -9,7 +9,6 @@ export const layChiTietPhongVeAction = (maLichChieu) => {
             dispatch(displayLoadingAction);
             const result = await quanLyDatVeService.layChiTietPhongVe(maLichChieu);
 
-            // console.log('result',result);
             if (result.status === 200) {
                 dispatch({
                     type: SET_CHI_TIET_PHONG_VE,
@@ -18,9 +17,9 @@ export const layChiTietPhongVeAction = (maLichChieu) => {
             }
             await dispatch(hideLoadingAction);
         } catch (error) {
+            console.log(error);
+
             dispatch(hideLoadingAction);
-            console.log('error', error);
-            console.log('error', error.response?.data);
         }
     };
 };
@@ -31,7 +30,6 @@ export const datVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
             dispatch(displayLoadingAction);
 
             const result = await quanLyDatVeService.datVe(thongTinDatVe);
-            console.log(result.data.content);
             //Đặt vé thành công gọi api load lại phòng vé
             await dispatch(layChiTietPhongVeAction(thongTinDatVe.maLichChieu));
             // await dispatch({ type: DAT_VE_HOAN_TAT });
@@ -39,8 +37,9 @@ export const datVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
 
             dispatch({ type: CHUYEN_TAB });
         } catch (error) {
+            console.log(error);
+
             dispatch(hideLoadingAction);
-            console.log(error.response.data);
         }
     };
 };

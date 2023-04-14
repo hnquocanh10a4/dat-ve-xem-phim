@@ -11,5 +11,7 @@ export const homeCarouselAction = async (dispatch) => {
             data: result.data.content,
         });
         await dispatch(hideLoadingAction);
-    } catch (error) {}
+    } catch (error) {
+        console.log(error);
+    }
 };

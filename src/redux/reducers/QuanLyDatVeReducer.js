@@ -33,7 +33,6 @@ export const QuanLyDatVeReducer = (state = stateDefault, action) => {
         }
 
         case CHANGE_TAB_ACTIVE: {
-            console.log('action', action);
             state.tabActive = action.number;
             return { ...state };
         }

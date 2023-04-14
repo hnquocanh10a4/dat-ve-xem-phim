@@ -23,7 +23,6 @@ export const layThongTinChiTietPhim = (id) => {
         try {
             const result = await quanLyRapService.layThongTinLichChieuPhim(id);
 
-            console.log('result', result);
             //Lấy được dữ liệu từ api về  => reducer
 
             dispatch({

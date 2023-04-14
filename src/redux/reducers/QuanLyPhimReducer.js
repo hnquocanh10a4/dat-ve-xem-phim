@@ -1,4 +1,10 @@
-import { GET_ALL_FILM, SET_FILM_DANG_CHIEU, SET_FILM_SAP_CHIEU } from '../types/QuanLyPhimType';
+import {
+    AN_TRAILER,
+    GET_ALL_FILM,
+    HIEN_TRAILER,
+    SET_FILM_DANG_CHIEU,
+    SET_FILM_SAP_CHIEU,
+} from '../types/QuanLyPhimType';
 
 const stateDefault = {
     arrFilm: [
@@ -20,6 +26,7 @@ const stateDefault = {
     dangChieu: true,
     sapChieu: false,
     arrFilmDefault: [],
+    trailer: { trailer: null, hidden: true },
 };
 
 export const QuanLyPhimReducer = (state = stateDefault, action) => {
@@ -40,6 +47,12 @@ export const QuanLyPhimReducer = (state = stateDefault, action) => {
             state.sapChieu = !state.sapChieu;
             state.arrFilm = state.arrFilmDefault.filter((film) => film.sapChieu === true);
             return { ...state };
+        }
+        case AN_TRAILER: {
+            return { ...state, trailer: { trailer: null, hidden: true } };
+        }
+        case HIEN_TRAILER: {
+            return { ...state, trailer: { trailer: action.trailer, hidden: false } };
         }
         default:
             return { ...state };

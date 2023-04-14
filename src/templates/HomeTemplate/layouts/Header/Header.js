@@ -56,7 +56,6 @@ export default function Header() {
             ],
         },
     ];
-    console.log('window.location.pathname', window.location.pathname);
     const handleDangXuat = (e) => {
         dispatch({ type: DANG_XUAT });
     };

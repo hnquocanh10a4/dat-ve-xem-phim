@@ -22,14 +22,12 @@ function Checkout(props) {
         (state) => state.QuanLyDatVeReducer,
     );
     const dispatch = useDispatch();
-    console.log('danhSachGheDangDat', danhSachGheDangDat);
     useEffect(() => {
         const action = layChiTietPhongVeAction(props.match.params.id);
         dispatch(action);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    console.log({ chiTietPhongVe });
     const { thongTinPhim, danhSachGhe } = chiTietPhongVe;
 
     const renderSeats = () => {
@@ -206,8 +204,6 @@ function Checkout(props) {
                                 thongTinDatVe.maLichChieu = props.match.params.id;
                                 thongTinDatVe.danhSachVe = danhSachGheDangDat;
 
-                                console.log(thongTinDatVe);
-
                                 dispatch(datVeAction(thongTinDatVe));
                             }}
                             className="bg-green-500 text-white w-full text-center py-3 font-bold text-2xl cursor-pointer"
@@ -226,14 +222,12 @@ const { TabPane } = Tabs;
 export default function CheckoutTab(props) {
     const { tabActive } = useSelector((state) => state.QuanLyDatVeReducer);
     const dispatch = useDispatch();
-    console.log('tabActive', tabActive);
     return (
         <div className="p-5">
             <Tabs
                 defaultActiveKey="1"
                 activeKey={tabActive}
                 onChange={(key) => {
-                    // console.log('key',  key)
                     dispatch({
                         type: 'CHANGE_TAB_ACTIVE',
                         number: key.toString(),
@@ -261,8 +255,6 @@ function KetQuaDatVe(props) {
         const action = layThongTinNguoiDungAction();
         dispatch(action);
     }, []);
-
-    console.log('thongTinNguoiDung', thongTinNguoiDung);
 
     const renderTicketItem = function () {
         return thongTinNguoiDung?.thongTinDatVe?.map((ticket, index) => {

@@ -22,7 +22,6 @@ export default function Login() {
         onSubmit: async (values) => {
             const action = dangNhapAction(values);
             dispatch(action);
-            console.log('values', values);
         },
     });
 

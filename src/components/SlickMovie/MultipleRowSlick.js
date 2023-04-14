@@ -7,6 +7,7 @@ import FilmFlip from '../Film/FilmFlip';
 import { SET_FILM_DANG_CHIEU, SET_FILM_SAP_CHIEU } from '../../redux/types/QuanLyPhimType';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import Trailer from '../Trailer/Trailer';
 
 function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -38,7 +39,6 @@ function MultipleRowSlick(props) {
     let activeClassSC = sapChieu === true ? 'active_Film' : 'none_active_Film';
     const renderFilms = () => {
         return props.arrFilm.slice(0, 6).map((item, index) => {
-            console.log('props.arrFilm.item', item);
             return (
                 <div className="mt-2 " key={index}>
                     <FilmFlip item={item} />
@@ -63,8 +63,9 @@ function MultipleRowSlick(props) {
 
     return (
         <div className="mx-8">
+            <Trailer />
             <button
-                className={`${styleSlick[activeClassDC]} px-8 py-3 font-semibold rounded bg-gray-800 text-white mr-2`}
+                className={`${styleSlick[activeClassDC]} border-orange-600 border-2 border-solid hover:bg-orange-600 hover:text-white px-8 py-3 font-semibold rounded bg-gray-800 text-white mr-2`}
                 onClick={() => {
                     const action = { type: SET_FILM_DANG_CHIEU };
                     dispatch(action);
@@ -73,7 +74,7 @@ function MultipleRowSlick(props) {
                 PHIM ĐANG CHIẾU
             </button>
             <button
-                className={`${styleSlick[activeClassSC]} px-8 py-3 font-semibold rounded bg-white text-gray-800 border-gray-800 border`}
+                className={`${styleSlick[activeClassSC]} border-orange-600 border-2 border-solid hover:bg-orange-600 hover:text-white px-8 py-3 font-semibold rounded bg-white text-gray-800`}
                 onClick={() => {
                     const action = { type: SET_FILM_SAP_CHIEU };
                     dispatch(action);

@@ -17,11 +17,14 @@ export const dangNhapAction = (thongTinDangNhap) => {
 
                 openNotification('success', 'Thành công', 'Đăng nhập thành công');
             }
-
-            console.log('result', result);
+            if (result.data.statusCode === 404) {
+                // openNotification('error', 'Thất bại', 'Đăng nhập Thất bại');
+                console.log(result.content, '123123');
+            }
         } catch (error) {
-            openNotification('error', 'Thất bại', 'Đăng nhập Thất bại');
-            console.log('error', error.response.data);
+            console.log(error.response.data.content);
+
+            openNotification('error', 'Thất bại', error.response.data.content);
         }
     };
 };
@@ -35,11 +38,10 @@ export const dangKyAction = (thongTinDangKy) => {
                 history.push('/login');
                 openNotification('success', 'Thành công', 'Đăng ký thành công mời bạn đăng nhập');
             }
-
-            console.log('result', result);
         } catch (error) {
-            openNotification('error', 'Thất bại', 'Đăng ký Thất bại');
-            console.log('error', error.response.data);
+            console.log(error);
+
+            openNotification('error', 'Thất bại', error.response.data.content);
         }
     };
 };
@@ -57,10 +59,9 @@ export const layThongTinNguoiDungAction = (thongTinDangNhap) => {
                 });
             }
             await dispatch(hideLoadingAction);
-
-            console.log('result', result);
         } catch (error) {
-            console.log('error', error.response.data);
+            console.log(error);
+
             dispatch(hideLoadingAction);
         }
     };

@@ -20,14 +20,11 @@ export default function HomeCarousel() {
 
     const { arrHinhAnh } = useSelector((state) => state.caroselReducer);
 
-    console.log('arrHinhAnh', arrHinhAnh);
-
     useEffect(() => {
         dispatch(homeCarouselAction);
     }, []);
 
     const renderHinhAnh = () => {
-        console.log('arrHinhAnh', arrHinhAnh);
         return arrHinhAnh.map((item, index) => {
             return (
                 <div key={index}>

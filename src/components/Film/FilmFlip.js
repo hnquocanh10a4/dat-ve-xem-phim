@@ -2,10 +2,12 @@ import React from 'react';
 import { PlayCircleOutlined } from '@ant-design/icons';
 import './FlimFlip.css';
 import { history } from '../../App';
+import { useDispatch } from 'react-redux';
+import { HIEN_TRAILER } from '../../redux/types/QuanLyPhimType';
 
 export default function FilmFlip(props) {
     const { item } = props;
-    // console.log('tiem', item);
+    const dispatch = useDispatch();
     return (
         <div className="flip-card mt-2">
             <div className="flip-card-inner">
@@ -28,7 +30,15 @@ export default function FilmFlip(props) {
                     >
                         <div>
                             <div className="rounded-full cursor-pointer">
-                                <PlayCircleOutlined style={{ fontSize: '50px' }} />
+                                <PlayCircleOutlined
+                                    style={{ fontSize: '50px' }}
+                                    onClick={() => {
+                                        dispatch({
+                                            type: HIEN_TRAILER,
+                                            trailer: item.trailer,
+                                        });
+                                    }}
+                                />
                             </div>
                             <div className="text-2xl mt-2 font-bold">{item.tenPhim}</div>
                         </div>
@@ -39,7 +49,7 @@ export default function FilmFlip(props) {
                 onClick={() => {
                     history.push(`/detail/${item.maPhim}`);
                 }}
-                className="bg-orange-300 text-center cursor-pointer py-2 bg-indigo-300 my-2 text-success-50 font-bold"
+                className="hover:bg-orange-600 hover:text-white h-7 mb-20 rounded-lg border-orange-600 border-2 border-solid bg-white text-center cursor-pointer py-2  my-2 text-orange-600 font-bold"
             >
                 ĐẶT VÉ
             </div>
